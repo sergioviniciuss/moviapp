@@ -1,0 +1,37 @@
+.suggestions img {
+	display: block;
+	width: 100%;
+	min-height: 100%;
+	-ms-interpolation-mode: bicubic;
+}
+.suggestions .thumb {
+    display: block;
+    overflow: hidden;
+    height: 200px;
+	max-height: 200px;
+	position: relative;
+	margin-bottom: 15px;
+}
+.suggestions .thumb:hover .overlay-info {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	opacity: .9;
+	background: transparent;
+	
+}
+.suggestions .thumb:hover .overlay-info .result-thumb-title {
+	color: #ffffff;
+	font-weight: bold;
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	bottom: -10px;
+	height: 90px;
+	line-height: 90px;
+	background-color: black;
+	font-size: 14px;
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Thumbnail, Grid, Row, Col, Panel, Form, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
-import {API_KEY, API_SEARCH_URL} from '../config'
+import { API_SEARCH_URL, API_URL_DISCOVER_MOST_RANKED } from '../config'
 import './Body.css';
+import MostRatedThumbs from './MostRatedThumbs';
 import ResultThumb from './ResultThumb';
 
 
@@ -11,49 +12,81 @@ class Body extends Component {
 		super(props);
 		this.state = {
 			searchedWord: "",
-			results: []
+			results: [],
+			suggestions: []
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick(event) {
 		event.preventDefault();
-		console.log("clicked");
-		console.log("searchedWord ", this.state.searchedWord);
 		this.getSearchResults();
+	}
+	getSuggestions() {
+		axios.get(API_URL_DISCOVER_MOST_RANKED)
+        .then(res => {
+            if (!!res && res.hasOwnProperty('data')) {
+				const data = res.data;
+				this.setState({
+					suggestions: data.results
+				})
+            }
+        })
+        .catch(function (error) {
+            this.catchErrors(error);
+        });
 	}
 	getSearchResults() {
 		axios.get(`${API_SEARCH_URL}${this.state.searchedWord}`)
         .then(res => {
             if (!!res && res.hasOwnProperty('data')) {
 				const data = res.data;
-				console.log(data);
 				this.setState(data);
-				console.log("estado atual ", this.state)
             }
         })
         .catch(function (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-            }
-			console.log(error.config);
+			this.catchErrors(error);
         });
 	}
+	catchErrors(error) {
+		if (error.response) {
+			// The request was made and the server responded with a status code
+			// that falls out of the range of 2xx
+			console.log(error.response.data);
+			console.log(error.response.status);
+			console.log(error.response.headers);
+		} else if (error.request) {
+			// The request was made but no response was received
+			// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+			// http.ClientRequest in node.js
+			console.log(error.request);
+		} else {
+			// Something happened in setting up the request that triggered an Error
+			console.log('Error', error.message);
+		}
+		console.log(error.config);
+	}
+	componentWillMount() {
+		this.getSuggestions();
+	}
     render () {
-		const { results } = this.state;
+		const { results, suggestions } = this.state;
         return (
             <Grid>
+				<Panel className="main-bg-color custom-panel" header="MOST RATED MOVIES">
+					<Row className="show-grid results-row suggestions">
+						{
+							suggestions.map((item) => 
+								<MostRatedThumbs 
+									key={item.id} 
+									title={item.title}
+									originalTitle={item.original_name}
+									image={item.backdrop_path}
+									imagePoster={item.poster_path}
+								/>
+							)
+						}
+					</Row>
+				</Panel>
 				<Panel className="main-bg-color custom-panel" header="MOVIE DATA SEARCH">
 					<Row className="show-grid">
 						<Col md={12} className="center-align">
