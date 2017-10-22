@@ -90,6 +90,7 @@ class Body extends Component {
 									voteAverage={item.vote_average}
 									description={item.overview}
 									mediaType={item.media_type}
+									releaseDate={item.release_date}
 
 									personImage={item.profile_path}
 									personName={item.name}

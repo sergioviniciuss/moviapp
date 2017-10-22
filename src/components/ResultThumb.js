@@ -25,18 +25,25 @@ class ResultThumb extends Component {
             rating, 
             voteAverage, 
             description,
+            releaseDate,
             personImage,
             personName,
             personPopularity,
             personKnownFor
         } = this.props;
-        console.log("popularity ",personPopularity);
+        let year = "";
+        if (!!releaseDate) {
+            year = `Released in ${releaseDate.split('-')[0]}`
+        }
         if( mediaType !== "person") {
             return (
                 <Col xs={12} md={3}>
                     <Thumbnail src={image ? API_IMG_DOMAIN + image : imagePoster ? API_IMG_DOMAIN + imagePoster: UNAVAILABLE_IMAGE} alt={title ? title: originalTitle}>
                         <h3 className="result-thumb-title">{title? title: originalTitle ? originalTitle : "Title not available"}</h3>
                         <p className="result-thumb-desc">{description ? description : "Description not available"}</p>
+                        <p className="result-thumb-date">
+                            {year}
+                        </p>
                         <p className="result-thumb-rating">
                             {voteAverage}<i className="star"></i>
                         </p>
