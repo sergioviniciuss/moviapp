@@ -20,13 +20,12 @@ body {
     border: 0;
     padding: 4px 16px;
 }
-.fullWidth {
+.full-width {
 	width: 100%;
 	display: block;
-	float: left;
 	position: relative;
 }
-.centerAll {
+.center-all {
 	display: block;
 	max-width: 1000px;
 	margin: 0 auto;
