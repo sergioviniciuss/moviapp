@@ -9,8 +9,13 @@ class MostRatedThumbs extends Component {
             title, 
             originalTitle, 
             image, 
-            imagePoster
+            imagePoster,
+            releaseDate
         } = this.props;
+        let year = "";
+        if (!!releaseDate) {
+            year = `${releaseDate.split('-')[0]}`
+        }
         return (
             <Col xs={12} md={3} className="thumb">
 				<img 
@@ -20,7 +25,7 @@ class MostRatedThumbs extends Component {
 				/>
 				<div className="overlay-info">
 					<h3 className="result-thumb-title">
-						{title? title: originalTitle ? originalTitle : "Title not available"}
+                    <strong className="text-highlight">{year}</strong> | {title? title: originalTitle ? originalTitle : "Title not available"}
 					</h3>
 				</div>
             </Col>
