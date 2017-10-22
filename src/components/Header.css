@@ -1,0 +1,13 @@
+.header {
+    background-color: #2a3234;
+}
+.app-logo {
+    width: 20%;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+}
+.main-title {
+    text-align: center;
+    font-size: 30px;
+}
