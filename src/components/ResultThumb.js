@@ -69,7 +69,7 @@ class ResultThumb extends Component {
                                 container={this}
                                 containerPadding={20}
                             >
-                                <Popover id="popover-contained" title="KNOWN FORr">
+                                <Popover id="popover-contained" title="KNOWN FOR">
                                     {
                                         personKnownFor.map((item) => 
                                             <p className="result-thumb-knownfor" key={item.id}>{item.title}</p>
