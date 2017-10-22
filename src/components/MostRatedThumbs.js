@@ -17,7 +17,7 @@ class MostRatedThumbs extends Component {
             year = `${releaseDate.split('-')[0]}`
         }
         return (
-            <Col xs={12} md={3} className="thumb">
+            <Col xs={6} md={3} className="thumb">
 				<img 
 					src={image ? API_IMG_DOMAIN + image : imagePoster ? 
 							API_IMG_DOMAIN + imagePoster: UNAVAILABLE_IMAGE} 
