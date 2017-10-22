@@ -37,10 +37,12 @@ class ResultThumb extends Component {
         }
         if( mediaType !== "person") {
             return (
-                <Col xs={12} md={3}>
+                <Col xs={6} md={3}>
                     <Thumbnail src={image ? API_IMG_DOMAIN + image : imagePoster ? API_IMG_DOMAIN + imagePoster: UNAVAILABLE_IMAGE} alt={title ? title: originalTitle}>
                         <h3 className="result-thumb-title">{title? title: originalTitle ? originalTitle : "Title not available"}</h3>
-                        <p className="result-thumb-desc">{description ? description : "Description not available"}</p>
+                        <p className="result-thumb-desc">
+                            {description ? description : "Description not available"}
+                        </p>
                         <p className="result-thumb-date">
                             {year}
                         </p>
@@ -52,7 +54,7 @@ class ResultThumb extends Component {
             )
         } else {
             return (
-                <Col xs={12} md={3}>
+                <Col xs={6} md={3}>
                     <Thumbnail src={personImage ? API_IMG_DOMAIN + personImage : UNAVAILABLE_IMAGE} alt={personName ? personName: "actor/actress"}>
                         <h3 className="result-thumb-title">{personName ? personName: "Name not found"}</h3>
                         <p className="result-thumb-popularity">

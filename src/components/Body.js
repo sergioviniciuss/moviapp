@@ -5,6 +5,7 @@ import { API_SEARCH_URL, API_URL_DISCOVER_MOST_RANKED, SUGGESTIONS_ITEMS_QTY } f
 import './Body.css';
 import MostRatedThumbs from './MostRatedThumbs';
 import ResultThumb from './ResultThumb';
+import Alert from './Alert';
 
 
 class Body extends Component {
@@ -13,7 +14,8 @@ class Body extends Component {
 		this.state = {
 			searchedWord: "",
 			results: [],
-			suggestions: []
+			suggestions: [],
+			showAlert: false
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -41,6 +43,10 @@ class Body extends Component {
             if (!!res && res.hasOwnProperty('data')) {
 				const data = res.data;
 				this.setState(data);
+				console.log(data.total_results);
+				this.setState({
+					showAlert: data.total_results > 0 ? false : true
+				})
             }
         })
         .catch(function (error) {
@@ -69,7 +75,7 @@ class Body extends Component {
 		this.getSuggestions();
 	}
     render () {
-		const { results, suggestions } = this.state;
+		const { results, suggestions, showAlert } = this.state;
         return (
             <Grid>
 				<Panel className="main-bg-color custom-panel" header={`${SUGGESTIONS_ITEMS_QTY} MOST POPULAR MOVIES CURRENTLY`}>
@@ -89,6 +95,15 @@ class Body extends Component {
 					</Row>
 				</Panel>
 				<Panel className="main-bg-color custom-panel" header="MOVIE DATA SEARCH">
+					<Row className="show-grid">
+						<Col md={12}>
+							<Alert 
+								showAlert={showAlert} 
+								type="danger" 
+								title="No results found" 
+								message={`Oops.. We couldn't retrieve any information. Please try different keywords.`} />
+						</Col>
+                    </Row>
 					<Row className="show-grid">
 						<Col md={12} className="center-align">
 							<Form inline>
