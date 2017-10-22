@@ -1,5 +1,6 @@
 .thumbnail {
     min-height: 660px;
+    max-height: 660px;
     background-color: #2a3234;
     border-color: #2a3234;
 }
