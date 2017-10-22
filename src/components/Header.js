@@ -11,7 +11,7 @@ class Header extends Component {
 					<img src={logo} className="app-logo" alt="logo" />
 				</Col>
 				<Col md={12}>
-					<h1 className="main-title">The best place to find information about movies</h1>
+					<h1 className="main-title">The best place to find information about your favorite movies</h1>
 				</Col>
             </Row>
         )

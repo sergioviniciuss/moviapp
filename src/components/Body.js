@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel, Form, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import './Body.css';
+import SearchForm from './SearchForm';
 
 
 class Body extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchedWord: ""
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+	handleClick(event) {
+		event.preventDefault();
+		console.log("clicked");
+		console.log("searchedWord ", this.state.searchedWord);
+	}
+	getSearchResults() {
+
+	}
     render () {
         return (
             <Grid>
@@ -14,10 +30,17 @@ class Body extends Component {
 							<FormGroup controlId="formInlineName">
 								<ControlLabel>Search for:</ControlLabel>
 								{' '}
-								<FormControl className="custom-input" type="search" placeholder="movie keywords" />
+								<FormControl 
+									onChange={(event) => {this.setState({
+										searchedWord: event.target.value
+									})}} 
+									className="custom-input" 
+									type="search" 
+									placeholder="movie keywords" 
+								/>
 							</FormGroup>
 							{' '}
-							<Button bsStyle="success" type="submit">
+							<Button bsStyle="success" type="submit" onClick={(e) => this.handleClick(e)}>
 								Search
 							</Button>
 						</Form>
