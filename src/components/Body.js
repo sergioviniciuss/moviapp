@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Thumbnail, Grid, Row, Col, Panel, Form, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
-import { API_SEARCH_URL, API_URL_DISCOVER_MOST_RANKED } from '../config'
+import { API_SEARCH_URL, API_URL_DISCOVER_MOST_RANKED, SUGGESTIONS_ITEMS_QTY } from '../config'
 import './Body.css';
 import MostRatedThumbs from './MostRatedThumbs';
 import ResultThumb from './ResultThumb';
@@ -32,7 +32,7 @@ class Body extends Component {
             }
         })
         .catch(function (error) {
-            this.catchErrors(error);
+            this.catchAPIErrors(error);
         });
 	}
 	getSearchResults() {
@@ -44,10 +44,10 @@ class Body extends Component {
             }
         })
         .catch(function (error) {
-			this.catchErrors(error);
+			this.catchAPIErrors(error);
         });
 	}
-	catchErrors(error) {
+	catchAPIErrors(error) {
 		if (error.response) {
 			// The request was made and the server responded with a status code
 			// that falls out of the range of 2xx
@@ -70,18 +70,20 @@ class Body extends Component {
 	}
     render () {
 		const { results, suggestions } = this.state;
+		console.log(suggestions)
         return (
             <Grid>
-				<Panel className="main-bg-color custom-panel" header="MOST RATED MOVIES">
+				<Panel className="main-bg-color custom-panel" header={`${SUGGESTIONS_ITEMS_QTY} MOST POPULAR MOVIES CURRENTLY`}>
 					<Row className="show-grid results-row suggestions">
 						{
-							suggestions.map((item) => 
+							suggestions.slice(0, SUGGESTIONS_ITEMS_QTY).map((item) => 
 								<MostRatedThumbs 
 									key={item.id} 
 									title={item.title}
 									originalTitle={item.original_name}
 									image={item.backdrop_path}
 									imagePoster={item.poster_path}
+									releaseDate={item.release_date}
 								/>
 							)
 						}
