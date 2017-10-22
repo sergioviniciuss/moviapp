@@ -23,7 +23,7 @@ class ResultThumb extends Component {
             image, 
             imagePoster, 
             rating, 
-            vote_count, 
+            voteAverage, 
             description,
             personImage,
             personName,
@@ -37,9 +37,8 @@ class ResultThumb extends Component {
                     <Thumbnail src={image ? API_IMG_DOMAIN + image : imagePoster ? API_IMG_DOMAIN + imagePoster: UNAVAILABLE_IMAGE} alt={title ? title: originalTitle}>
                         <h3 className="result-thumb-title">{title? title: originalTitle ? originalTitle : "Title not available"}</h3>
                         <p className="result-thumb-desc">{description ? description : "Description not available"}</p>
-                        <p>
-                            <Button bsStyle="primary">Button</Button>&nbsp;
-                            <Button bsStyle="default">Button</Button>
+                        <p className="result-thumb-rating">
+                            {voteAverage}<i className="star"></i>
                         </p>
                     </Thumbnail>
                 </Col>
@@ -50,7 +49,7 @@ class ResultThumb extends Component {
                     <Thumbnail src={personImage ? API_IMG_DOMAIN + personImage : UNAVAILABLE_IMAGE} alt={personName ? personName: "actor/actress"}>
                         <h3 className="result-thumb-title">{personName ? personName: "Name not found"}</h3>
                         <p className="result-thumb-popularity">
-                            Popularidade: {Math.round(personPopularity*100)/100}
+                        {Math.round(personPopularity*100)/100}<i className="star"></i>
                         </p>
                         <ButtonToolbar>
                             <Button bsStyle="success" onClick={this.handleClick}>

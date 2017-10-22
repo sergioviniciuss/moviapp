@@ -87,7 +87,7 @@ class Body extends Component {
 									image={item.backdrop_path}
 									imagePoster={item.poster_path}
 									rating={item.vote_average}
-									voteCount={item.vote_count}
+									voteAverage={item.vote_average}
 									description={item.overview}
 									mediaType={item.media_type}
 
