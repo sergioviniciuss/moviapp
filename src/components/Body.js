@@ -70,7 +70,6 @@ class Body extends Component {
 	}
     render () {
 		const { results, suggestions } = this.state;
-		console.log(suggestions)
         return (
             <Grid>
 				<Panel className="main-bg-color custom-panel" header={`${SUGGESTIONS_ITEMS_QTY} MOST POPULAR MOVIES CURRENTLY`}>
