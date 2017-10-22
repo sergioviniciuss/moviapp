@@ -4,10 +4,10 @@ This is an SPA developed in React consuming "the movie db" API
 
 ### Running ###
 
-# Development (http://localhost:8080 )
+#### Development (http://localhost:8080 )
 npm start
 
-# Productoin
+#### Production
 npm run build
 
 
