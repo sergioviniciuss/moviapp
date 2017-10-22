@@ -5,10 +5,10 @@ This is an SPA developed in React consuming "the movie db" API
 ### Running ###
 
 #### Development (http://localhost:8080 )
-npm start
+$npm start
 
 #### Production
-npm run build
+$npm run build
 
 ### Technical Details ###
 All the components should remain on the components folder;
