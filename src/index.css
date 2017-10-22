@@ -7,6 +7,19 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+.main-bg-color {
+	color: #ffffff;
+	background-color: #313b3d;
+}
+.custom-input {
+	color: #6a7274;
+    background: #293132;
+    -webkit-box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    border: 0;
+    padding: 4px 16px;
+}
 .fullWidth {
 	width: 100%;
 	display: block;
@@ -17,4 +30,12 @@ body {
 	display: block;
 	max-width: 1000px;
 	margin: 0 auto;
+}
+.panel-default {
+	border-color: #2a3234;
+}
+.panel-default>.panel-heading {
+	color: #ffffff;
+	background-color: #2a3234;
+	border-color: #2a3234;
 }
