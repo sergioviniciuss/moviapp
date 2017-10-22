@@ -1,7 +1,7 @@
 {
 	"name": "raisin-the-movie-db",
 	"version": "1.0.0",
-	"description": "SPA to search for movie information using the movie db api",
+	"description": "SPA to search for movie information using The Movie DB API",
 	"main": "index.js",
 	"scripts": {
 		"build": "cross-env NODE_ENV=production webpack -p",
