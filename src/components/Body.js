@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, Form, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Thumbnail, Grid, Row, Col, Panel, Form, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
 import {API_KEY, API_SEARCH_URL} from '../config'
 import './Body.css';
+import ResultThumb from './ResultThumb';
 
 
 class Body extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchedWord: ""
+			searchedWord: "",
+			results: []
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -25,7 +27,8 @@ class Body extends Component {
             if (!!res && res.hasOwnProperty('data')) {
 				const data = res.data;
 				console.log(data);
-                this.setState(data);
+				this.setState(data);
+				console.log("estado atual ", this.state)
             }
         })
         .catch(function (error) {
@@ -48,35 +51,55 @@ class Body extends Component {
         });
 	}
     render () {
+		const { results } = this.state;
         return (
             <Grid>
-                <Row className="show-grid">
-					<Col md={12} className="center-align">
-						<Panel className="main-bg-color custom-panel" header="MOVIE DATA SEARCH">
-						<Form inline>
-							<FormGroup controlId="formInlineName">
-								<ControlLabel>Search for:</ControlLabel>
+				<Panel className="main-bg-color custom-panel" header="MOVIE DATA SEARCH">
+					<Row className="show-grid">
+						<Col md={12} className="center-align">
+							<Form inline>
+								<FormGroup controlId="formInlineName">
+									<ControlLabel>Search for:</ControlLabel>
+									{' '}
+									<FormControl 
+										onChange={(event) => {this.setState({
+											searchedWord: event.target.value
+										})}} 
+										className="custom-input" 
+										type="search" 
+										placeholder="movie keywords" 
+									/>
+								</FormGroup>
 								{' '}
-								<FormControl 
-									onChange={(event) => {this.setState({
-										searchedWord: event.target.value
-									})}} 
-									className="custom-input" 
-									type="search" 
-									placeholder="movie keywords" 
+								<Button bsStyle="success" type="submit" onClick={(e) => this.handleClick(e)}>
+									Search
+								</Button>
+							</Form>
+						</Col>
+					</Row>
+					<Row className="show-grid results-row">
+						{
+							results.map((item) => 
+								<ResultThumb 
+									key={item.id} 
+									title={item.title}
+									originalTitle={item.original_name}
+									image={item.backdrop_path}
+									imagePoster={item.poster_path}
+									rating={item.vote_average}
+									voteCount={item.vote_count}
+									description={item.overview}
+									mediaType={item.media_type}
+
+									personImage={item.profile_path}
+									personName={item.name}
+									personPopularity={item.popularity}
+									personKnownFor={item.known_for}
 								/>
-							</FormGroup>
-							{' '}
-							<Button bsStyle="success" type="submit" onClick={(e) => this.handleClick(e)}>
-								Search
-							</Button>
-						</Form>
-						</Panel>
-					</Col>
-					<Col md={12}>
-						search result
-					</Col>
-                </Row>
+							)
+						}
+					</Row>
+				</Panel>
             </Grid>
         )
     }
