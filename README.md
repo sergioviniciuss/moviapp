@@ -19,7 +19,7 @@ External Libraries:
 * axios - fetch api data;
 
 
-It uses the The Movie DB API to fetch basically two informations in this first moment:
+It uses the The Movie DB API to fetch basically two information in this first moment:
 * Most popular movies
 * Search for query parameters typed by the user.
 
