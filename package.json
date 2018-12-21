@@ -27,13 +27,14 @@
 		"file-loader": "^1.1.5",
 		"style-loader": "^0.19.0",
 		"url-loader": "^0.6.2",
-		"webpack": "^3.8.1",
-		"webpack-dev-server": "^2.9.3"
+		"webpack": "^4.26.0",
+		"webpack-dev-server": "^3.1.10"
 	},
 	"dependencies": {
 		"axios": "^0.17.0",
 		"react": "^16.0.0",
 		"react-bootstrap": "^0.31.3",
-		"react-dom": "^16.0.0"
+		"react-dom": "^16.0.0",
+		"webpack-cli": "^3.1.2"
 	}
 }
